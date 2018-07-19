@@ -1,0 +1,26 @@
+{
+  "name": "todo-nodejs",
+  "version": "1.0.0",
+  "description": "todolist app with mongo, express and node",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zentech/todolist-men.git"
+  },
+  "author": "George Louis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zentech/todolist-men/issues"
+  },
+  "homepage": "https://github.com/zentech/todolist-men#readme"
+}

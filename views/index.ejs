@@ -1,0 +1,68 @@
+<!-- views/index.ejs -->
+<html lang="en">
+    <head>
+
+        <% include partials/head %>
+    </head>
+
+    <body>
+        <header>
+            <% include partials/header %>
+        </header>
+
+        <main>
+
+            <!-- input form -->
+        <form>
+            <div class="container">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="secretcode" placeholder="Enter secret code">
+                </div>
+        </form>
+
+                <row id="new-member">
+                    <h1 class="text-center">Enter / View Phi Beta Members</h1>
+                    <form class="col-6 mx-auto" action="/newtodo" method="POST">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="item" placeholder="Enter Phi Beta Member">
+                            <span><button type="submit" class="btn btn-primary">Submit</button></span>
+                    </div>
+                    </form>
+                </row>
+                <!-- unordered list (ul) -->
+                <div id="member-list" class="row">
+                    <ul class="col-6 mx-auto">
+                        <% for(var i = 0; i < todoList.length; i++) { %>
+                            <li> <%= todoList[i].name %>
+                                <a href="/destroy/<%= todoList._id %>" class="btn btn-raised btn-danger" >Delete</a>
+                            </i>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <% include partials/footer %>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('form').on('keyup', '[name="secretcode"]', function () {
+                    if($(this).val() && $(this).val()==="Phi Beta") {
+                        console.log($(this).val());
+                        $("#new-member").show();
+                        $("#member-list").show();
+                    }
+                    else {
+                        $("#new-member").hide();
+                        $("#member-list").hide();
+                        console.log($(this).val());
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

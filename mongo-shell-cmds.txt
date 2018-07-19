@@ -1,0 +1,110 @@
+sudo service mongodb start
+
+show dbs
+admin  0.000GB
+local  0.000GB
+> 
+> 
+> use todo
+switched to db todo
+> todo.list.insert({name: "buy groceries at publix"});
+2018-03-07T09:12:19.380-0500 E QUERY    [thread1] ReferenceError: todo is not defined :
+@(shell):1:1
+> db.todo.insert({name: "buy groceries at publix"})
+WriteResult({ "nInserted" : 1 })
+> 
+> 
+> show collections
+todo
+> 
+> 
+> show dbs
+admin  0.000GB
+local  0.000GB
+todo   0.000GB
+> db.todo.find()
+{ "_id" : ObjectId("5a9ff36ead855d1ec4a5bc71"), "name" : "buy groceries at publix" }
+> db.todo.insert({name: "Wash the car and change tires"})
+WriteResult({ "nInserted" : 1 })
+> cls
+
+> 
+> db.todo.find()
+{ "_id" : ObjectId("5a9ff36ead855d1ec4a5bc71"), "name" : "buy groceries at publix" }
+{ "_id" : ObjectId("5a9ff3e0ad855d1ec4a5bc72"), "name" : "Wash the car and change tires" }
+> db.dropDatabase()
+{ "dropped" : "todo", "ok" : 1 }
+> 
+> 
+> show dbs
+admin  0.000GB
+local  0.000GB
+> 
+> 
+> use todo
+switched to db todo
+> 
+> 
+> db.createCollection("list")
+{ "ok" : 1 }
+> 
+> 
+> show collections
+list
+> 
+> 
+> db.list.insert({name: "buy groceries from publix"})
+WriteResult({ "nInserted" : 1 })
+
+> db.list.insert({name: "wash the car and change oil"})
+WriteResult({ "nInserted" : 1 })
+> 
+> 
+> db.list.find()
+{ "_id" : ObjectId("5a9ff4f2ad855d1ec4a5bc73"), "name" : "buy groceries from publix" }
+{ "_id" : ObjectId("5a9ff4ffad855d1ec4a5bc74"), "name" : "wash the car and change oil" }
+> cls
+
+> 
+> 
+> db.list.find().pretty()
+{
+	"_id" : ObjectId("5a9ff4f2ad855d1ec4a5bc73"),
+	"name" : "buy groceries from publix"
+}
+{
+	"_id" : ObjectId("5a9ff4ffad855d1ec4a5bc74"),
+	"name" : "wash the car and change oil"
+}
+> 
+> 
+> db.list.remove({name: "buy groceries from publix"})
+WriteResult({ "nRemoved" : 1 })
+> 
+> 
+> db.list.find()
+{ "_id" : ObjectId("5a9ff4ffad855d1ec4a5bc74"), "name" : "wash the car and change oil" }
+> db.list.find().pretty()
+{
+	"_id" : ObjectId("5a9ff4ffad855d1ec4a5bc74"),
+	"name" : "wash the car and change oil"
+}
+> 
+> 
+> db.list.drop()
+true
+> 
+> 
+> show collections
+> 
+> 
+> db.dropDatabase()
+{ "dropped" : "todo", "ok" : 1 }
+> 
+> 
+> show dbs
+admin  0.000GB
+local  0.000GB
+> 
+> 
+> 
